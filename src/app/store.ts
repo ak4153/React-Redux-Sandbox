@@ -1,15 +1,22 @@
 import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "../features/counter/counter-slice";
-import { apiSlice } from "../features/dogs/dogs-api-slice";
+import {
+  dogApiSlice,
+  dogByNameApiSlice
+} from "../features/dogs/dogs-api-slice";
 
 export const store = configureStore({
   reducer: {
     //state.counter - field
     counter: counterReducer,
-    [apiSlice.reducerPath]: apiSlice.reducer
+    [dogApiSlice.reducerPath]: dogApiSlice.reducer,
+    [dogByNameApiSlice.reducerPath]: dogByNameApiSlice.reducer
   },
   middleware: (getDefaultMiddleWare) => {
-    return getDefaultMiddleWare().concat(apiSlice.middleware);
+    return getDefaultMiddleWare().concat(
+      dogApiSlice.middleware,
+      dogByNameApiSlice.middleware
+    );
   }
 });
 

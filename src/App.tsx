@@ -5,23 +5,32 @@ import {
   decremented,
   addXtoCounter
 } from "./features/counter/counter-slice";
-import { useFetchBreedsQuery } from "./features/dogs/dogs-api-slice";
+import {
+  useFetchBreedsQuery,
+  useFetchBreedByNameQuery
+} from "./features/dogs/dogs-api-slice";
+import Search from "./components/Search";
 export default function App() {
   const count = useAppSelector((state) => state.counter.value);
   const dispatch = useAppDispatch();
-  const [numDogs, setNumDogs] = useState(10);
+  const [numDogs, setNumDogs] = useState<number>(10);
+
   const { data = [], isFetching } = useFetchBreedsQuery(numDogs);
   const increment = () => {
     dispatch(incremented());
   };
+
   const decrement = () => {
     dispatch(decremented());
   };
+
   const addx = () => {
     dispatch(addXtoCounter(5));
   };
+
   return (
     <div>
+      <Search />
       <div>
         <p>Dogs to fetch:</p>
         <select
