@@ -4,7 +4,9 @@ import {
   dogApiSlice,
   dogByNameApiSlice
 } from "../features/dogs/dogs-api-slice";
-
+//1. import the slices
+//2.configure the store "configureStore"
+//3.export the reducerse
 export const store = configureStore({
   reducer: {
     //state.counter - field
